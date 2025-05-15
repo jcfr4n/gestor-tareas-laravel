@@ -26,6 +26,10 @@ RUN apt-get update && apt-get install -y \
 # 2. Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# 2.5 Instalar Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
+
 # 3. Xdebug
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
